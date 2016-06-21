@@ -1,28 +1,31 @@
-fleet-detail.html<div id="fleets">
+fleet-detail.html
+<div id="fleets">
 
-  Search: <input ng-model="query">
-  <br/>
-  Sort by:
-  <select ng-model='fleetsOrder' required ng-options='option.value as option.name for option in fleetsOrderOptions'></select>
+    Search: <input ng-model="query">
+    <br/>
+    Sort by:
+    <select ng-model='fleetsOrder' required
+            ng-options='option.value as option.name for option in fleetsOrderOptions'></select>
 
-  <table class="fleetsTable">
-    <thead>
-    <th>id</th>
-    <th>name</th>
-    <th>coords</th>
-    <th>ships</th>
-    <th>speed</th>
-    <th>destination</th>
-    </thead>
-    <tbody>
-    <tr ng-repeat="fleet in fleets | filter:query | orderBy:fleetsOrder" ng-click="console.log('click');selectFleet(fleet);">
-      <td>{{fleet.id}}</td>
-      <td>{{fleet.name}}</td>
-      <td>( {{fleet.x}}, {{fleet.y}} )</td>
-      <td>{{fleet.ships}}</td>
-      <td>{{fleet.waypoints[0].speed}}</td>
-      <td ng-hide="fleet.waypoints==null">( {{fleet.waypoints[0].x}}, {{fleet.waypoints[0].y}})</td>
-    </tr>
-    </tbody>
-  </table>
+    <table class="fleetsTable">
+        <thead>
+        <th>id</th>
+        <th>name</th>
+        <th>coords</th>
+        <th>ships</th>
+        <th>speed</th>
+        <th>destination</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="fleet in fleets | filter:query | orderBy:fleetsOrder"
+            ng-click="console.log('click');selectFleet(fleet);">
+            <td>{{fleet.id}}</td>
+            <td>{{fleet.name}}</td>
+            <td>( {{fleet.x}}, {{fleet.y}} )</td>
+            <td>{{fleet.ships}}</td>
+            <td>{{fleet.waypoints[0].speed}}</td>
+            <td ng-hide="fleet.waypoints==null">( {{fleet.waypoints[0].x}}, {{fleet.waypoints[0].y}})</td>
+        </tr>
+        </tbody>
+    </table>
 </div>

@@ -6,7 +6,14 @@
 
   <ul class="waypointlist">
     <li ng-repeat="wp in selection.fleet.waypoints" ng-click="showWaypointEdit = !showWaypointEdit">
-      ( {{wp.x}}, {{wp.y}} ) speed: {{wp.speed}} <span ng-show="showWaypointEdit" ng-click="removeWaypoint(wp)">x</span>
+      <span ng-show="!showSpeedEdit" ng-click="showSpeedEdit = true" click-hide="showSpeedEdit = false">( {{wp.x}}, {{wp.y}} )</span>
+      <span  ng-show="showSpeedEdit">
+        ( <input type="text" ng-model="wp.x" value="{{wp.x}}"/>,
+          <input type="text" ng-model="wp.y" value="{{wp.y}}"/>)
+      </span>
+
+      speed: {{wp.speed}}
+      <span ng-show="showWaypointEdit" ng-click="removeWaypoint(wp)">x</span>
     </li>
   </ul>
 

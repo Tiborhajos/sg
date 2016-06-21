@@ -1,14 +1,18 @@
-  <svg height="400" version="1.1" width="400" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; position: relative;">
+<svg height="400" version="1.1" width="400" xmlns="http://www.w3.org/2000/svg"
+     style="overflow: hidden; position: relative;">
     <circle ng-repeat="p in planets"
             ng-attr-cx="{{p.x}}" ng-attr-cy="{{p.y}}" ng-attr-r="{{cfg.planetradius}}"
             fill="{{cfg.planetcolour}}" stroke="{{cfg.planetcolour}}"
             ng-click="selectPlanet(p);"></circle>
-    <path ng-repeat="f in fleets"
-          fill="none" stroke="{{cfg.waypointcolour}}"
-          ng-attr-d="{{waypointString(f)}}"></path>
-    <path ng-repeat="f in fleets"
-          fill="{{cfg.fleetcolour}}" stroke="{{cfg.fleetcolour}}"
-          ng-attr-d="{{drawFleetShape(f)}}"
-          ng-attr-transform="rotate({{fleetRotate(f)}}, {{f.x}}, {{f.y}})"
-          ng-click="selectFleet(f);"></path>
-  </svg>
+    <g ng-repeat="f in fleets">
+        <path fill="none" stroke="{{cfg.waypointcolour}}"
+              ng-attr-d="{{waypointString(f)}}"></path>
+        <path fill="{{cfg.fleetcolour}}" stroke="{{cfg.fleetcolour}}"
+              ng-attr-d="{{drawFleetShape(f)}}"
+              ng-attr-transform="rotate({{fleetRotate(f)}}, {{f.x}}, {{f.y}})"
+              ng-click="selectFleet(f);"></path>
+        <circle ng-repeat="w in f.waypoints"
+                stroke="white" stroke-width="3" fill="white"
+                ng-attr-cx="{{w.x}}" ng-attr-cy="{{w.y}}" r="3"></circle>
+    </g>
+</svg>

@@ -5,7 +5,6 @@ angular.module('spacegame')
             templateUrl: "map/map2.html",
 
             controller: function ($scope) {
-
                 $scope.mapconfig = {
                     fleetcolour: "#fff",
                     planetcolour: "#0ff",
@@ -16,11 +15,11 @@ angular.module('spacegame')
                 };
 
                 $scope.cfg = $scope.mapconfig;
-
             },
             link: function ($scope, iElement, iAttrs, controller, transcludeFn) {
                 $scope.drawFleetShape = function (fleet) {
-                    var fleetShape = 'M' + fleet.x + ',' + fleet.y + 'L' + (fleet.x - 5) + ',' + fleet.y + ',L' + fleet.x + ',' + (fleet.y + 10) + 'L' + (fleet.x + 5) + ',' + fleet.y + 'Z';
+                    var fleetShape = 'M' + fleet.x + ',' + fleet.y + 'L' + (fleet.x - 5) + ','
+                        + fleet.y + ',L' + fleet.x + ',' + (fleet.y + 10) + 'L' + (fleet.x + 5) + ',' + fleet.y + 'Z';
 
                     return fleetShape;
                 };
@@ -30,6 +29,7 @@ angular.module('spacegame')
                     angular.forEach(fleet.waypoints, function (wp) {
                         wpstring = wpstring + "L" + wp.x + "," + wp.y;
                     });
+
                     return wpstring;
                 };
 
