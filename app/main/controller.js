@@ -54,11 +54,28 @@ angular.module('spacegame')
         };
 
         $scope.selectFleet = function (fleet) {
-            if($scope.mode != 'addWaypoint') {
+            if ($scope.mode != 'addWaypoint') {
                 fleet.fleet = true; // hack to let object know what it is
                 $scope.selection.fleet = fleet;
                 $scope.selection.prev = $scope.selection.current;
                 $scope.selection.current = fleet;
+            }
+        };
+
+        $scope.selectFleetAndWaypoint = function (fleet, wp) {
+
+            if ($scope.mode != 'addWaypoint') {
+                //Select the fleet if it is not selected.
+                if (!$scope.selection.fleet === fleet) {
+                    $scope.selectFleet(fleet);
+                }
+
+                fleet.waypoints.forEach(function (waypoint) {
+                        waypoint.isSelected = false;
+                    }
+                );
+
+                wp.isSelected = true;
             }
         };
 
@@ -81,7 +98,7 @@ angular.module('spacegame')
             $scope.selection.current.waypoints.splice(index, 1);
         };
 
-        $scope.editWaypoint = function(waypoint) {
+        $scope.editWaypoint = function (waypoint) {
             $scope.selection.current.waypoints
         };
     }]);

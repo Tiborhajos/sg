@@ -1,3 +1,6 @@
+/**
+ * Work in progress - directive to close something by clicking anywhere.
+ */
 angular.module("spacegame")
     .directive('clickHide', function ($parse, $document) {
         var dir = {
@@ -18,6 +21,6 @@ angular.module("spacegame")
                 };
             }
         };
-        console.log('this');
+        console.log('clickHide init');
         return dir;
     });

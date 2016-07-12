@@ -3,16 +3,20 @@
     <circle ng-repeat="p in planets"
             ng-attr-cx="{{p.x}}" ng-attr-cy="{{p.y}}" ng-attr-r="{{cfg.planetradius}}"
             fill="{{cfg.planetcolour}}" stroke="{{cfg.planetcolour}}"
-            ng-click="selectPlanet(p);"></circle>
+            ng-click="selectPlanet(p);">
+    </circle>
     <g ng-repeat="f in fleets">
         <path fill="none" stroke="{{cfg.waypointcolour}}"
-              ng-attr-d="{{waypointString(f)}}"></path>
+              ng-attr-d="{{waypointString(f)}}">
+        </path>
         <path fill="{{cfg.fleetcolour}}" stroke="{{cfg.fleetcolour}}"
               ng-attr-d="{{drawFleetShape(f)}}"
               ng-attr-transform="rotate({{fleetRotate(f)}}, {{f.x}}, {{f.y}})"
-              ng-click="selectFleet(f);"></path>
+              ng-click="selectFleet(f);">
+        </path>
         <circle ng-repeat="w in f.waypoints"
-                stroke="white" stroke-width="3" fill="white"
-                ng-attr-cx="{{w.x}}" ng-attr-cy="{{w.y}}" r="3"></circle>
+                stroke="white" stroke-width="3" fill="white" ng-click="selectFleetAndWaypoint(f,w);"
+                ng-attr-cx="{{w.x}}" ng-attr-cy="{{w.y}}" r="3">
+        </circle>
     </g>
 </svg>
