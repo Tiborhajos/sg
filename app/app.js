@@ -7,5 +7,5 @@ require('./main/controller.js');
 require('./map/map2.js');
 
 require('./fleet/speedWidget.js');
-require('./util/clickHide.js');
+require('./util/clickAnywhereButHere.js');
 

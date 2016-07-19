@@ -18,7 +18,7 @@ fleet-detail.html
         </thead>
         <tbody>
         <tr ng-repeat="fleet in fleets | filter:query | orderBy:fleetsOrder"
-            ng-click="console.log('click');selectFleet(fleet);">
+            ng-click="selectFleet(fleet);">
             <td>{{fleet.id}}</td>
             <td>{{fleet.name}}</td>
             <td>( {{fleet.x}}, {{fleet.y}} )</td>

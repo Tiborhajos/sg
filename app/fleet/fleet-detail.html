@@ -1,23 +1,27 @@
 <div class="detail" id="fleet-detail" ng-show="selection.current.fleet">
-  <label>fleet id: {{selection.fleet.id}}</label>
-  <label>name: <input ng-model="selection.fleet.name"/></label>
-  <label>coords: ( {{selection.fleet.x}}, {{selection.fleet.y}} )</label>
-  <label>ships: {{selection.fleet.ships}}</label>
+    <label>fleet id: {{selection.fleet.id}}</label>
+    <label>name: <input ng-model="selection.fleet.name"/></label>
+    <label>coords: ( {{selection.fleet.x}}, {{selection.fleet.y}} )</label>
+    <label>ships: {{selection.fleet.ships}}</label>
 
-  <ul class="waypointlist">
-    <li ng-repeat="wp in selection.fleet.waypoints" ng-click="selectFleetAndWaypoint(selection.fleet, wp)">
-      <span ng-class="{waypointActive: wp.isSelected == true}" ng-show="!showSpeedEdit" ng-click="showSpeedEdit = true">( {{wp.x}}, {{wp.y}} )</span>
-      <span ng-show="showSpeedEdit">
-        ( <input type="text" ng-model="wp.x" value="{{wp.x}}"/>,
-          <input type="text" ng-model="wp.y" value="{{wp.y}}"/>)
-      </span>
+    <ul class="waypointlist">
+        <li ng-repeat="wp in selection.fleet.waypoints" ng-click="selectFleetAndWaypoint(selection.fleet, wp)">
+            <span ng-class="{waypointActive: wp.isSelected == true}" ng-show="!showWaypointEdit"
+                  ng-click="showWaypointEdit = true" click-anywhere-but-here="showWaypointEdit = false">( {{wp.x}}, {{wp.y}} )
+            </span>
+          <span ng-show="showWaypointEdit">
+            (<input type="text" ng-model="wp.x" value="{{wp.x}}"/>,
+             <input type="text" ng-model="wp.y" value="{{wp.y}}"/>)
+          </span>
+            <span ng-class="{waypointActive: wp.isSelected == true}" ng-show="showSpeedEdit = true"
+                  ng-click="showSpeedEdit = true">speed: {{wp.speed}}
+            </span>
+            <input type="number" ng-model="wp.speed" value="{{ wp.speed }}" ng-show="showSpeedEdit"/>
+            <span ng-show="wp.isSelected" ng-click="removeWaypoint(wp)">x</span>
+        </li>
+    </ul>
 
-      <span ng-class="{waypointActive: wp.isSelected == true}">speed: {{wp.speed}}</span>
-      <span ng-show="wp.isSelected" ng-click="removeWaypoint(wp)">x</span>
-    </li>
-  </ul>
-
-  <button ng-click="setMode('addWaypoint')" ng-hide="mode=='addWaypoint'">Add Waypoint</button>
-  <button ng-click="setMode('std');" ng-show="mode=='addWaypoint'">Cancel</button>
-  <speed-widget ng-show="mode=='addWaypoint'" fleet="selection.current"></speed-widget>
+    <button ng-click="setMode('addWaypoint')" ng-hide="mode=='addWaypoint'">Add Waypoint</button>
+    <button ng-click="setMode('std')" ng-show="mode=='addWaypoint'">Cancel</button>
+    <speed-widget ng-show="mode=='addWaypoint'" fleet="selection.current"></speed-widget>
 </div>
