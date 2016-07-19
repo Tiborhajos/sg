@@ -63,12 +63,12 @@ angular.module('spacegame')
         };
 
         $scope.selectFleetAndWaypoint = function (fleet, wp) {
-
             if ($scope.mode != 'addWaypoint') {
                 //Select the fleet if it is not selected.
-                if (!$scope.selection.fleet === fleet) {
+
+                    console.log(1);
                     $scope.selectFleet(fleet);
-                }
+
 
                 fleet.waypoints.forEach(function (waypoint) {
                         waypoint.isSelected = false;
